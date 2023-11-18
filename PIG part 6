@@ -1,0 +1,33 @@
+import random
+
+def one_player():
+    turn_total = 0
+    faces = [1, 2, 3, 4, 5, 6]
+    score = 0
+    valid = False
+    turns = 0
+    while not valid:
+        result = random.choice(faces)
+        if result == 1:
+            turn_total = 0
+            turns += 1
+        if result != 1:
+            turn_total += result
+            if score + turn_total > 99:
+                score += turn_total
+                turns += 1
+                valid = True
+            elif turn_total >= 20:
+                score += turn_total
+                turns += 1
+                turn_total = 0 #initialize the turn total AFTER adding to score
+    return turns
+
+game_avg = int(input("Games?"))
+def score_probability(games):
+    turns = 0
+    for _ in range(games):
+        turns += one_player()
+    print("Average Turns:", (turns/games))
+
+score_probability(game_avg)

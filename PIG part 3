@@ -1,0 +1,28 @@
+import random
+def one_player(x):
+    turn_total = 0
+    faces = [1, 2, 3, 4, 5, 6]
+    valid = False
+    while not valid:
+    #while valid input is TRUE, so once the input is actually true, while stops
+        result = random.choice(faces)
+        #print("Roll:", result)
+        if result == 1:
+            turn_total = 0
+            break
+        if turn_total >= x:
+            break
+        else:
+            turn_total += result
+    return turn_total
+Holds = int(input("Specify the hold value:"))
+TRIALS = int(input("How many Hold-at-20 turn simulations?"))
+def score_probability(possible_hold):
+    Score = 0
+    for x in range(TRIALS):
+        x_score = one_player(Holds)
+        if x_score >= possible_hold:
+            Score += 1
+    print("The probably of reaching", possible_hold, "in a single turn is", (Score/TRIALS))
+
+score_probability(Holds)

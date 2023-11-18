@@ -1,0 +1,71 @@
+import random
+
+def two_players():
+    score1 = 0
+    score2 = 0
+    turn_total = 0
+    faces = [1, 2, 3, 4, 5, 6]
+    players_turn = 20
+    conditional = 50
+    while score1 < 100 and score2 <100:
+        if conditional == 50:
+            print("Player 1 score:", score1)
+            print("Player 2 score:", score2)
+            conditional = 20
+        if players_turn == 20:
+            print("It is Player 1's turn.")
+            players_turn = 1
+        while players_turn == 1:
+            result = random.choice(faces)
+            print("Roll:", result)
+            if result == 1:
+                turn_total = 0
+                print("Turn total:", turn_total)
+                print("Player 1's new score:", score1)
+                print("Player 1 score:", score1)
+                print("Player 2 score:", score2)
+                print("It is Player 2's turn.")
+                players_turn = 2
+            elif result != 1:
+                turn_total += result
+                if score1 + turn_total > 99:
+                    score1 += turn_total
+                    print("Turn total:", turn_total)
+                    print("Player 1 wins!")
+                    return score1
+                elif turn_total >= 20:
+                    print("Turn total:", turn_total)
+                    score1 += turn_total
+                    print("Player 1's new score:", score1)
+                    turn_total = 0 #initialize the turn total AFTER adding to score
+                    print("Player 1 score:", score1)
+                    print("Player 2 score:", score2)
+                    print("It is Player 2's turn.")
+                    players_turn = 2
+        while players_turn == 2:
+            result = random.choice(faces)
+            print("Roll:", result)
+            if result == 1:
+                turn_total = 0
+                print("Turn total:", turn_total)
+                print("Player 2's new score:", score2)
+                print("Player 1 score:", score1)
+                print("Player 2 score:", score2)
+                print("It is Player 1's turn.")
+                players_turn = 1
+            elif result != 1:
+                turn_total += result
+                if score2 + turn_total > 99:
+                    score2 += turn_total
+                    print("Player 2 wins!")
+                    return score2
+                elif turn_total >= 20:
+                    print("Turn total:", turn_total)
+                    score2 += turn_total
+                    print("Player 2's new score:", score2)
+                    turn_total = 0 #initialize the turn total AFTER adding to score
+                    print("Player 1 score:", score1)
+                    print("Player 2 score:", score2)
+                    print("It is Player 1's turn.")
+                    players_turn = 1
+print("Winning score:", two_players())

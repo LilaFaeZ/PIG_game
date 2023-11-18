@@ -1,0 +1,18 @@
+import random
+def one_player():
+    turn_total = 0
+    faces = [1, 2, 3, 4, 5, 6]
+    valid = False
+    while not valid:
+    #while valid input is TRUE, so once the input is actually true, while stops
+        result = random.choice(faces)
+        print("Roll:", result)
+        if result == 1:
+            turn_total = 0
+            break
+        if turn_total >= 20:
+            break
+        else:
+            turn_total += result
+    return turn_total
+print("Turn total:", one_player())

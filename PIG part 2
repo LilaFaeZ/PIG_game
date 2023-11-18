@@ -1,0 +1,59 @@
+import random
+def one_player():
+    turn_total = 0
+    faces = [1, 2, 3, 4, 5, 6]
+    valid = False
+    while not valid:
+    #while valid input is TRUE, so once the input is actually true, while stops
+        result = random.choice(faces)
+        #print("Roll:", result)
+        if result == 1:
+            turn_total = 0
+            break
+        if turn_total >= 20:
+            break
+        else:
+            turn_total += result
+    return turn_total
+TRIALS = int(input("How many Hold-at-20 turn simulations?"))
+def score_probability():
+    print("Score    Estimated Probability")
+    Score_25 = 0
+    Score_24 = 0
+    Score_23 = 0
+    Score_22 = 0
+    Score_21 = 0
+    Score_20 = 0
+    Score_0 = 0
+    scores = {0:"percentage", 24:"percentage",23:"percentage",22:"percentage",
+              21:"percentage",20:"percentage"}
+    for x in range(TRIALS):
+        x_score = one_player()
+        if x_score == 25:
+            Score_25 += 1
+        if x_score == 24:
+            Score_24 += 1
+        if x_score == 23:
+            Score_23 += 1
+        if x_score == 22:
+            Score_22 += 1
+        if x_score == 21:
+            Score_21 += 1
+        if x_score == 20:
+            Score_20 += 1
+        if x_score == 0:
+            Score_0 += 1
+    scores[25]=(Score_25/TRIALS)
+    scores[24]=(Score_24/TRIALS)
+    scores[23]=(Score_23/TRIALS)
+    scores[22]=(Score_22/TRIALS)
+    scores[21]=(Score_21/TRIALS)
+    scores[20]=(Score_20/TRIALS)
+    scores[0]=(Score_0/TRIALS)
+    for key in scores:
+        if key == 0:
+            print(key,"      ",scores[key])
+        else:
+            print(key,"     ",scores[key])
+
+score_probability()

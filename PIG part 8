@@ -1,0 +1,173 @@
+import random
+
+def computer_and_human():
+    computer_score = 0
+    human_score = 0
+    turn_total = 0
+    players_turn = 0
+    conditional = 50
+    players = ["Player 1", "Player 2"]
+    human = random.choice(players)
+    print("You will be", human)
+    if human == "Player 1":
+        while computer_score < 100 and human_score < 100:
+            if conditional == 50:
+                print("Player 1 score:", human_score)
+                print("Player 2 score:", computer_score)
+                conditional = 20
+            if conditional == 20:
+                print("It is Player 1's turn.")
+                conditional = 43532
+                players_turn = 1
+            while players_turn == 1:
+                result = random.randint(1,6)
+                print("Roll:", result)
+                if result == 1:
+                    turn_total = 0
+                    print("Turn total:", turn_total)
+                    print("Player 1's new score:", human_score)
+                    print("Player 1 score:", human_score)
+                    print("Player 2 score:", computer_score)
+                    print("It is Player 2's turn.")
+                    players_turn = 2
+                elif result != 1:
+                    turn_total += result
+                    print("Turn total:", turn_total)
+                    x = rollOrHold()
+                    if human_score + turn_total > 99:
+                        human_score+= turn_total
+                        print("Turn total:", turn_total)
+                        print("Player 1 wins!")
+                        return human_score
+                    elif x == "R":
+                        if turn_total >= 20:
+                            print("You cannot roll again if you are at 20 or above!")
+                            print("Turn total:", turn_total)
+                            human_score += turn_total
+                            print("Player 1's new score:", human_score)
+                            turn_total = 0 #initialize the turn total AFTER adding to score
+                            print("Player 1 score:", human_score)
+                            print("Player 2 score:", computer_score)
+                            print("It is Player 2's turn.")
+                            players_turn = 2
+                    elif x == "H":
+                        print("Turn total:", turn_total)
+                        human_score += turn_total
+                        print("Player 1 new score:", human_score)
+                        print("Player 1 score:", human_score)
+                        print("Player 2 score:", computer_score)
+                        print("It is Player 2's turn.")
+                        turn_total = 0
+                        players_turn = 2
+            while players_turn == 2:
+                result = random.randint(1,6)
+                print("Roll:", result)
+                if result == 1:
+                    turn_total = 0
+                    print("Turn total:", turn_total)
+                    print("Player 2's new score:", computer_score)
+                    print("Player 2 score:", computer_score)
+                    print("Player 1 score:", human_score)
+                    print("It is Player 1's turn.")
+                    players_turn = 1
+                elif result != 1:
+                    turn_total += result
+                    if computer_score + turn_total > 99:
+                        computer_score += turn_total
+                        print("Player 2 wins!")
+                        return computer_score
+                    elif turn_total >= 20:
+                        print("Turn total:", turn_total)
+                        computer_score += turn_total
+                        print("Player 2's new score:", computer_score)
+                        turn_total = 0 #initialize the turn total AFTER adding to score
+                        print("Player 1 score:", human_score)
+                        print("Player 2 score:", computer_score)
+                        print("It is Player 1's turn.")
+                        players_turn = 1 
+    if human == "Player 2":
+        while computer_score < 100 and human_score < 100:
+            if conditional == 50:
+                print("Player 1 score:", computer_score)
+                print("Player 2 score:", human_score)
+                conditional = 20
+            if conditional == 20:
+                print("It is Player 1's turn.")
+                conditional = 43532
+                players_turn = 1
+            while players_turn == 1:
+                result = random.randint(1,6)
+                print("Roll:", result)
+                if result == 1:
+                    turn_total = 0
+                    print("Turn total:", turn_total)
+                    print("Player 1's new score:", computer_score)
+                    print("Player 1 score:", computer_score)
+                    print("Player 2 score:", human_score)
+                    print("It is Player 2's turn.")
+                    players_turn = 2
+                elif result != 1:
+                    turn_total += result
+                    if computer_score + turn_total > 99:
+                        computer_score += turn_total
+                        print("Player 1 wins!")
+                        return computer_score
+                    elif turn_total >= 20:
+                        print("Turn total:", turn_total)
+                        computer_score += turn_total
+                        print("Player 1's new score:", computer_score)
+                        turn_total = 0 #initialize the turn total AFTER adding to score
+                        print("Player 1 score:", computer_score)
+                        print("Player 2 score:", human_score)
+                        print("It is Player 2's turn.")
+                        players_turn = 2
+            while players_turn == 2:
+                result = random.randint(1,6)
+                print("Roll:", result)
+                if result == 1:
+                    turn_total = 0
+                    print("Turn total:", turn_total)
+                    print("Player 2's new score:", human_score)
+                    print("Player 2 score:", human_score)
+                    print("Player 1 score:", computer_score)
+                    print("It is Player 1's turn.")
+                    players_turn = 1
+                elif result != 1:
+                    turn_total += result
+                    print("Turn total:", turn_total)
+                    x = rollOrHold()
+                    if human_score + turn_total > 99:
+                        human_score+= turn_total
+                        print("Turn total:", turn_total)
+                        print("Player 2 wins!")
+                        return human_score
+                    elif x == "R":
+                        if turn_total >= 20:
+                            print("You cannot roll again if you are at 20 or above!")
+                            print("Turn total:", turn_total)
+                            human_score += turn_total
+                            print("Player 2's new score:", human_score)
+                            turn_total = 0 #initialize the turn total AFTER adding to score
+                            print("Player 1 score:", computer_score)
+                            print("Player 2 score:", human_score)
+                            print("It is Player 1's turn.")
+                            players_turn = 1
+                    elif x == "H":
+                        print("Turn total:", turn_total)
+                        human_score += turn_total
+                        print("Player 2 new score:", human_score)
+                        print("Player 1 score:", computer_score)
+                        print("Player 2 score:", human_score)
+                        print("It is Player 1's turn.")
+                        turn_total = 0
+                        players_turn = 1
+
+def rollOrHold():
+    while True:
+        rollhold = input('Roll/Hold? Enter "r" or "h"')
+        rollhold = rollhold.upper()
+        if rollhold == "H" or rollhold== "R":
+            return rollhold
+        else:
+            print('Input a valid response: ("r" or "h")')
+print("Winning score:", computer_and_human())
